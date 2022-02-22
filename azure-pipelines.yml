@@ -24,9 +24,9 @@ steps:
     arguments: '''--configuration $(BuildConfiguration)'''
 
 
-
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: 'publish'
-        publishWebProjects: true
-        arguments: '''--configuration $(BuildConfiguration) --output $(build.artifactstaging- task: DotNetCoreCLI@2
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '''--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'''
+    modifyOutputPath: false
