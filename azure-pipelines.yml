@@ -28,5 +28,6 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
+    projects: '**/*.csproj'
     arguments: '''--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'''
     modifyOutputPath: false
