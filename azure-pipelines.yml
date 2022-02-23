@@ -10,24 +10,36 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Install .NET core sdk'
+  inputs:
+   version: 3.1.x
+   performMultiLevelLookup: true
+
+Settings
+- task: UseDotNet@2
+  inputs:
+   version: '3.1.x'
+   displayName: set dotnet version to use
+
+Settings
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '''$(Parameters.RestoreBuildProjects)'''
-    arguments: '''--configuration $(BuildConfiguration)'''
-
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: '''$(Parameters.TestProjects)'''
-    arguments: '''--configuration $(BuildConfiguration)'''
-
+    projects: '**/*tests.csproj*'
+    arguments: '--configuration $(buildConfiguration)'
+    testRunTitle: 'TestRun_$(build.buildnumber)'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: true
-    projects: '**/*.csproj'
-    arguments: '''--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'''
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)''''
     modifyOutputPath: false
+    
