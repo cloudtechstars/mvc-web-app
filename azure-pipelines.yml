@@ -15,27 +15,21 @@ steps:
   inputs:
    version: 3.1.x
    performMultiLevelLookup: true
-
-Settings
 - task: UseDotNet@2
   inputs:
    version: '3.1.x'
-   displayName: set dotnet version to use
-
-Settings
+  displayName: set dotnet version to use
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
-
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: '**/*tests.csproj*'
     arguments: '--configuration $(buildConfiguration)'
     testRunTitle: 'TestRun_$(build.buildnumber)'
-
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
