@@ -7,17 +7,17 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest 
 
 steps:
 - task: UseDotNet@2
   displayName: 'Install .NET core sdk'
   inputs:
-   version: 5.1.x
+   version: 3.1.x
    performMultiLevelLookup: true
 - task: UseDotNet@2
   inputs:
-   version: '5.1.x'
+   version: '3.1.x'
   displayName: set dotnet version to use
 - task: DotNetCoreCLI@2
   inputs:
