@@ -8,7 +8,7 @@ trigger:
 - master
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubantu-latest
 
 steps:
 - task: DotNetCoreCLI@2
